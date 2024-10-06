@@ -9,12 +9,12 @@ export default function ListItem({result}) {
           <Link href={'/detail/' + result[i]._id}>{result[i].title}</Link><br></br>
           <Link href={'/edit/' + result[i]._id} className="list-btn">✏️</Link>
           <button className="list-btn" onClick={(e) => {
-            fetch('/api/post/delete', { method: 'POST', body: result[i]._id }).then(()=>{
-                e.target.parentElement.style.opacity = 0;
-                setTimeout(()=>{
-                    e.target.parentElement.style.display = 'none';
-                }, 1000)
-            })}}>🗑️</button> 
+            fetch(`/api/delete/${result[i]._id}`, { method: "DELETE" }).then(() => {
+              e.target.parentElement.style.opacity = 0;
+              setTimeout(() => {
+              e.target.parentElement.style.display = "none";
+            }, 1000);
+          });}}>🗑️</button> 
           <p>1월 1일</p>
           </div>
         )}
