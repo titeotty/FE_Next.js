@@ -22,16 +22,20 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  let session = await getServerSession(authOptions)
-  console.log(session)
+  let session = await getServerSession(authOptions);
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-      <div className="navbar"> 
-        <Link href="/" className="logo">포럼만들기</Link> 
-        <Link href="/list">List</Link> 
-        <LoginBtn></LoginBtn>
-        </div>  
+        <div className="navbar">
+          <span>yoon post</span>
+          {session ? (
+            <span className="name">
+              {session.user.name} <LogoutBtn />
+            </span>
+          ) : (
+            <LoginBtn />
+          )}
+        </div>
         {children}
       </body>
     </html>
