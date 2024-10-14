@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Link from 'next/link'
 import LoginBtn from "./LoginBtn";
+import LogoutBtn from "./LogoutBtn";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
@@ -23,14 +24,15 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   let session = await getServerSession(authOptions);
+  console.log(session)
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <div className="navbar">
-          <span>yoon post</span>
+          <span>포럼만들기</span>
           {session ? (
             <span className="name">
-              {session.user.name} <LogoutBtn />
+               <LogoutBtn />
             </span>
           ) : (
             <LoginBtn />
